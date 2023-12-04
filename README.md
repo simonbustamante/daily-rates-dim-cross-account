@@ -1,6 +1,6 @@
-![image](https://github.com/simonbustamante/daily-rates-dim-cross-account/assets/31484503/3f856bd6-7c01-4e24-a9f1-b9a8bb79948e)
-
 # AWS Data Configuration and Processing Guide
+
+![image](https://github.com/simonbustamante/daily-rates-dim-cross-account/assets/31484503/3f856bd6-7c01-4e24-a9f1-b9a8bb79948e)
 
 This README provides a detailed guide on setting up AWS configurations for data handling and processing. The configurations include AWS IAM roles, Glue connections, S3 bucket creation, and a step function.
 
