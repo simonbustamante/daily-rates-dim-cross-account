@@ -2,7 +2,7 @@
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
-#### aws-data-hq-prd-analytics #052081006081 #### #### ####
+#### aws-data-hq-prd-analytics #account 2 #### #### ####
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
@@ -29,8 +29,8 @@
 
 
 locals {
-  profile = "052081006081_AWSAdministratorAccess"
-  profile2 = "525196274797_AWSAdministratorAccess"
+  profile = "<account2>_AWSAdministratorAccess"
+  profile2 = "<account1>_AWSAdministratorAccess"
   region = "us-east-1"
   connection_name = "fnc_dwh_conn"
   fnc_db_ip = "10.18.26.11"
