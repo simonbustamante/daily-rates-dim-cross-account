@@ -1,0 +1,53 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "glu_hq_finan_zeus_daily_rates_extraction_to_data_lake_hq_prd_001",
+    "States": {
+      "glu_hq_finan_zeus_daily_rates_extraction_to_data_lake_hq_prd_001": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "glu_hq_finan_zeus_daily_rates_extraction_to_data_lake_hq_prd_001"
+        },
+        "Credentials": {
+          "RoleArn": "arn:aws:iam::052081006081:role/svc_hq_zeus_fnc_dwh_conn"
+        },
+        "Next": "StartCrawler - crwl-hq-std-prd-finan-daily-rate-prd"
+      },
+      "StartCrawler - crwl-hq-std-prd-finan-daily-rate-prd": {
+        "Type": "Task",
+        "Parameters": {
+          "Name": "crwl-hq-std-prd-finan-daily-rate-prd"
+        },
+        "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
+        "Next": "GetCrawler - crwl-hq-std-prd-finan-daily-rate-prd"
+      },
+      "GetCrawler - crwl-hq-std-prd-finan-daily-rate-prd": {
+        "Type": "Task",
+        "Parameters": {
+          "Name": "crwl-hq-std-prd-finan-daily-rate-prd"
+        },
+        "Resource": "arn:aws:states:::aws-sdk:glue:getCrawler",
+        "Next": "Choice"
+      },
+      "Choice": {
+        "Type": "Choice",
+        "Choices": [
+          {
+            "Variable": "$.Crawler.State",
+            "StringEquals": "RUNNING",
+            "Next": "Wait"
+          }
+        ],
+        "Default": "Pass"
+      },
+      "Wait": {
+        "Type": "Wait",
+        "Seconds": 10,
+        "Next": "GetCrawler - crwl-hq-std-prd-finan-daily-rate-prd"
+      },
+      "Pass": {
+        "Type": "Pass",
+        "End": true
+      }
+    }
+  }

@@ -1,0 +1,10 @@
+.terraform
+.terraform/*
+.terraform*
+terraform*
+*.zip
+sftp*
+*.pub
+transfer*
+exchange-rates-deployment_prd.7z
+daily-rates-deployment_prd.7z
